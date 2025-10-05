@@ -22,7 +22,7 @@ const Navbar = () => {
 
       <div>
 
-        {session && <Link href={"/"}> Dashboard </Link>}
+        {session && <Link href={"/dashboard"}> Dashboard </Link>}
         {session && <button onClick={() => signOut()}>logout</button>}
 
         {!session &&
