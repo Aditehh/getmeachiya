@@ -1,21 +1,35 @@
 "use client"
 import React from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession, signIn, signOut } from 'next-auth/react'
 import Link from 'next/link'
-import { signIn } from 'next-auth/react'
-import { signOut } from 'next-auth/react'
+
 
 const Navbar = () => {
+  const { data: session } = useSession();
+
+  // if (session) {
+  //   return <>
+  //     Signed in as {session.user.email} <br />
+  //     <button onClick={() => signOut()}>
+  //       Signout
+  //     </button>
+
+  //   </>
+  // }
   return (
     <div className='flex gap-90'>
       I am the Navbar
 
       <div>
 
-      <Link href={"/login"}>
-        LOGIN
-      </Link>
+        {session && <Link href={"/"}> Dashboard </Link>}
+        {session && <button onClick={() => signOut()}>logout</button>}
 
+        {!session &&
+          <Link href={"/login"}>
+            LOGIN
+          </Link>
+        }
       </div>
     </div>
   )
