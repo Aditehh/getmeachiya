@@ -22,7 +22,7 @@ const Navbar = () => {
 
       <div>
 
-        {session && <Link href={"/dashboard"}> Dashboard </Link>}
+        {session && <Link href={"/dashboard"}> Welcome, {session.user.email} </Link>}
         {session && <button onClick={() => signOut()}>logout</button>}
 
         {!session &&
