@@ -25,15 +25,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionWrapper>
 
+        <SessionWrapper>
           <Navbar />
           <div className="min-h-screen">
-
             {children}
           </div>
           <Footer />
         </SessionWrapper>
+
       </body>
     </html>
   );
