@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import mongoose from "mongoose";
 
 const handler = NextAuth({
   providers: [
@@ -8,6 +9,18 @@ const handler = NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+  callbacks: {
+  async signIn({ user, account, profile, email, credentials }) {
+    if(account.provider == "github") {
+      //connect to the database
+      const client = await mongoose.connect();
+      //check if the user already exists on the database
+      const currentUser = await client.db("users").collection("users").findOne
+      ({email: email})
+    }
+  }
+}
+  
 });
 
 export { handler as GET, handler as POST };

@@ -20,17 +20,6 @@ export default function Home() {
           you aint logged in
         </div>
       }
-
-
-
-
-
-
-
-
-
-
-
     </>
   );
 }
