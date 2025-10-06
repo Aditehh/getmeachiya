@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import mongoose from "mongoose";
+import User from "@/models/User";
 
 const handler = NextAuth({
   providers: [
@@ -15,8 +16,13 @@ const handler = NextAuth({
       //connect to the database
       const client = await mongoose.connect();
       //check if the user already exists on the database
-      const currentUser = await client.db("users").collection("users").findOne
-      ({email: email})
+      const currentUser = User.findOne({email:email})
+      if(!currentUser) {
+        const newUser = new User ({
+          email:email
+        })
+        await newUser.save()
+      }
     }
   }
 }
