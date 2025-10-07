@@ -19,6 +19,7 @@ const handler = NextAuth({
       const currentUser = User.findOne({email:email})         
       if(!currentUser) {
         const newUser = new User ({    
+          
           email:email
         })
         await newUser.save()
