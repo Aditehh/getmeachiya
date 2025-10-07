@@ -10,15 +10,15 @@ const handler = NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
-  callbacks: {
+  callbacks: {                 
   async signIn({ user, account, profile, email, credentials }) {
     if(account.provider == "github") {
       //connect to the database
       const client = await mongoose.connect();
       //check if the user already exists on the database
-      const currentUser = User.findOne({email:email})
+      const currentUser = User.findOne({email:email})         
       if(!currentUser) {
-        const newUser = new User ({
+        const newUser = new User ({    
           email:email
         })
         await newUser.save()
